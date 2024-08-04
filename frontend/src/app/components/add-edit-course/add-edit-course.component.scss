@@ -1,0 +1,43 @@
+.add-edit-container {
+    margin: 5rem;
+}
+
+.form-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.add-edit-form {
+    width: 50vw;
+}
+
+.secondary-button {
+    color: white !important;
+    background-color: red !important;
+    margin-left: 2rem;
+}
+
+.currency-field {
+    margin-right: 0.5rem;
+    width: 7rem;
+}
+
+
+label {
+    width: 30%;
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:15px;
+}
+
+mat-form-field {
+    width: 50%;
+    float: left;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}

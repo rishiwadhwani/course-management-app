@@ -1,0 +1,189 @@
+<div class="add-edit-container">
+  <h2>{{ isEditMode ? "Edit Course" : "Add New Course" }}</h2>
+  <div class="form-div">
+    <form [formGroup]="courseForm" class="add-edit-form">
+      <div>
+        <label for="CourseName">Course Name:</label>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            formControlName="CourseName"
+            name="CourseName"
+            id="CourseName"
+          />
+          <mat-error *ngIf="courseForm.get('CourseName')?.hasError('required')"
+            >Error: This is a required field</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div>
+        <label for="University">University:</label>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            formControlName="University"
+            [matAutocomplete]="autoUniversities"
+            name="University"
+            id="University"
+          />
+          <mat-error *ngIf="courseForm.get('University')?.hasError('required')"
+            >Error: This is a required field</mat-error
+          >
+          <mat-autocomplete #autoUniversities="matAutocomplete">
+            <mat-option
+              *ngFor="let option of filteredUniversities | async"
+              [value]="option"
+            >
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete></mat-form-field
+        >
+      </div>
+
+      <div>
+        <label for="Country">Country:</label>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            formControlName="Country"
+            [matAutocomplete]="autoCountries"
+            name="Country"
+            id="Country"
+          />
+          <mat-error *ngIf="courseForm.get('Country')?.hasError('required')"
+            >Error: This is a required field</mat-error
+          >
+          <mat-autocomplete #autoCountries="matAutocomplete">
+            <mat-option
+              *ngFor="let option of filteredCountries | async"
+              [value]="option"
+            >
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete></mat-form-field
+        >
+      </div>
+
+      <div>
+        <label for="City">City:</label>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            formControlName="City"
+            [matAutocomplete]="autoCities"
+            name="City"
+            id="City"
+          />
+          <mat-error *ngIf="courseForm.get('City')?.hasError('required')"
+            >Error: This is a required field</mat-error
+          >
+          <mat-autocomplete #autoCities="matAutocomplete">
+            <mat-option
+              *ngFor="let option of filteredCities | async"
+              [value]="option"
+            >
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <label for="Price">Price:</label>
+        <mat-form-field appearance="fill" class="currency-field">
+          <mat-select formControlName="Currency" class="currency-select">
+            <mat-option *ngFor="let option of currencies" [value]="option">{{
+              option
+            }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="courseForm.get('Currency')?.hasError('required')"
+            >Error</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            formControlName="Price"
+            type="number"
+            name="Price"
+            id="Price"
+          />
+          <mat-error *ngIf="courseForm.get('Price')?.hasError('required')"
+            >Error: This is a required field</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <!-- <div>
+        Currency:
+        <input matInput formControlName="Currency" />
+      </div> -->
+
+      <div>
+        <label for="StartDate">Start Date:</label>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            [matDatepicker]="picker1"
+            formControlName="StartDate"
+            name="StartDate"
+            id="StartDate" />
+          <mat-error *ngIf="courseForm.get('StartDate')?.hasError('required')"
+            >Error: This is a required field</mat-error
+          >
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker
+        ></mat-form-field>
+      </div>
+
+      <div>
+        <label for="EndDate">End Date:</label>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            formControlName="EndDate"
+            name="EndDate"
+            id="EndDate" /><mat-error
+            *ngIf="courseForm.get('EndDate')?.hasError('required')"
+            >Error: This is a required field</mat-error
+          >
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker
+        ></mat-form-field>
+      </div>
+
+      <div>
+        <label for="CourseDescription">Course Description:</label>
+        <mat-form-field appearance="fill">
+          <textarea
+            matInput
+            formControlName="CourseDescription"
+            name="CourseDescription"
+            id="CourseDescription"
+          ></textarea>
+          <mat-error
+            *ngIf="courseForm.get('CourseDescription')?.hasError('required')"
+            >Error: This is a required field</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="buttons">
+    <button mat-raised-button color="primary" (click)="onSubmit()">
+      {{ isEditMode ? "Update Course" : "Add Course" }}
+    </button>
+
+    <button mat-raised-button class="secondary-button" (click)="onCancel()">
+      Cancel
+    </button>
+  </div>
+</div>
